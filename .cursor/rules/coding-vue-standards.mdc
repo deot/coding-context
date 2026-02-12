@@ -28,7 +28,7 @@ components/
 └── TodoItem.vue
 ```
 
-## 3. Filename Casing
+## 3. Filename Casing Style
 
 Use **kebab-case** for all filenames.
 
@@ -45,10 +45,13 @@ components/
 └── my-component.vue
 ```
 
-## 4. CSS Coding
+## 4. CSS Coding Style
 
-1. If there are global variables（from `@deot/style`）, then use them first.
-2. Prioritize the use of the `BEM` standard.
+- If there are global variables（from `@deot/style`）, then use them first.
+- Prioritize the use of the `BEM` standard.
 
+## 5. Javascript Coding Style
+
+- Use arrow functions
 
 ## 5. Always respond in Chinese-simplified
