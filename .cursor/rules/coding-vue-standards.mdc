@@ -1,6 +1,7 @@
 ---
 description: Definitive guidelines for building maintainable, performant, and type-safe Vue 3 applications using modern best practices, Composition API, and TypeScript.
-globs: **/*.{js,jsx,ts,tsx,vue,scss,css,html}
+globs: **/*
+alwaysApply: true
 ---
 # Vue 3 Best Practices
 
@@ -26,3 +27,28 @@ components/
 ├── TodoList.vue
 └── TodoItem.vue
 ```
+
+## 3. Filename Casing
+
+Use **kebab-case** for all filenames.
+
+❌ BADs
+```
+Components/
+├── MyComponent.vue
+└── myComponent.vue
+```
+
+✅ GOOD
+```
+components/
+└── my-component.vue
+```
+
+## 4. CSS Coding
+
+1. If there are global variables（from `@deot/style`）, then use them first.
+2. Prioritize the use of the `BEM` standard.
+
+
+## 5. Always respond in Chinese-simplified
