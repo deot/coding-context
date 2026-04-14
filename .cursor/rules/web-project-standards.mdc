@@ -1,0 +1,96 @@
+---
+description: Vue 3 项目规范：编码风格、@deot 生态约束与 src 分层组件化。
+globs: **/*.{vue,js,jsx,ts,tsx,css,scss,less}
+alwaysApply: false
+---
+# Vue 3 编码规范
+
+## 1. 代码组织
+
+- **单一职责**：文件职责清晰、边界明确。
+- **拆分大文件**：文件过大或关注点过多时及时拆分。
+- **提取常量**：常量集中到 `[page dir]/constants/*.[js|ts]` 或 `[component dir]/constants.[js|ts]`。
+
+## 2. 基础配置：Lint 与格式化
+
+- 必须使用 `ESLint` + `Stylelint`，并启用 IDE 实时反馈与保存自动格式化。
+
+## 3. 文件命名风格
+
+所有文件名统一使用 **kebab-case**（短横线命名）。
+
+❌ 错误示例
+```
+Components/
+├── MyComponent.vue
+└── myComponent.vue
+```
+
+✅ 正确示例
+```
+components/
+└── my-component.vue
+```
+
+## 4. 单文件组件（SFC）
+
+- 每个组件必须放在独立 `.vue` 文件中。
+
+❌ 错误示例
+```vue
+<!-- todo.vue：同文件定义多个组件 -->
+<script setup>
+const TodoWrapper = { /* ... */ }
+const TodoItem = { /* ... */ }
+</script>
+```
+
+✅ 正确示例
+```
+components/
+└── todo/
+    ├── todo-wrapper.vue
+    ├── todo-item.vue
+    └── index.js
+```
+
+## 5. CSS 代码风格
+
+- 优先复用 `@deot/style` 已有能力：全局变量优先使用，遵循 `g-` 开头的全局样式约定。
+- 优先采用 `BEM` 命名规范。在当前工程下，可以直接使用 `@include block/element/modifier/when` 等。
+- 移动端子包（如 `src/mobile`）使用 rem 时，遵循 `750rem = 100vw`（设计稿宽 750 口径）。
+
+## 6. JavaScript/TypeScript 代码风格
+
+- 使用箭头函数
+- 优先使用 `const`，仅在需要重新赋值时使用 `let`，禁止 `var`
+- 异步操作优先使用 `async/await`，避免 `.then` 链式嵌套
+
+## 7. @deot 工程约束（项目定制）
+
+- `@deot/env` 仅用于开发与构建链路管理；业务层 env 设计不在本规则约束范围内。
+- 开发/构建统一走 `dec` 相关命令（如 `dec dev`、`dec build`），避免绕开既有环境注入流程。
+- `@deot/vc` 组件按项目约定使用 `V` 前缀（如 `VButton`、`VForm`）。
+- `@deot/helper` 优先复用工具能力，避免重复造轮子。
+- `@deot/http` 作为统一请求入口，避免在业务模块分散封装请求客户端。
+
+## 8. src 分层组件化规范（就近优先）
+
+- 规则范围：`src` 全域；共享目录命名统一 `common`。
+- 复用查找与上提顺序固定为：页面级 → 模块级 `common` → 业务域级共享 → `src` 根级共享。
+- 页面级默认结构：`pages/<module>/<page>/{index.vue,api.js,components,utils,stores}`，页面私有逻辑优先就近放置。
+- 模块内复用统一沉淀到 `pages/<module>/common`；跨模块复用再上提到 `src/shared` 或根级公共层。
+- 只有出现第二个消费者时才允许上提层级；禁止“预判复用”提前放入 `shared`。
+- 遵循第 3/4 节命名与入口约定；共享目录统一通过 `index.js` 聚合导出。
+- 低层不得反向依赖高业务层，避免跨层直连、循环依赖和耦合扩散。
+- 组件目录优先以 `components/<name>/index.js` 作为入口；子组件可放在 `components/<name>/*.vue` 或 `components/<name>/*/index.js`，不再要求额外包一层 `components`。
+- 示例（逐层上提）：
+```
+src/mobile/pages/order/detail/components/address-card/index.js
+-> src/mobile/pages/order/common/components/address-card/index.js
+-> src/shared/components/address-card/index.js
+```
+
+## 9. 回复语言
+
+- 始终使用简体中文回复。
