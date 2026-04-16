@@ -1,0 +1,22 @@
+{
+  "name": "@deot/mcp-web",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.1",
+    "fast-glob": "^3.3.3",
+    "zod": "^4.1.12"
+  },
+  "bin": {
+    "deot-web-mcp": "bin/index.js"
+  }
+}

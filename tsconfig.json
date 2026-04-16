@@ -1,0 +1,21 @@
+{
+  "extends": "@deot/dev/tsconfig.shared.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "paths": {
+      "@deot/mcp": ["./packages/index/src"],
+      "@deot/mcp-*": ["./packages/*/src"]
+    }
+  },
+  "include": [
+    "packages/shims.d.ts",
+    "packages/components",
+    "packages/*/__tests__",
+    "packages/*/examples",
+    "packages/*/src"
+  ],
+  "exclude": [
+    "node_modules/**/*",
+    "scripts/**/*"
+  ]
+}

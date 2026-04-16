@@ -1,0 +1,16 @@
+{
+    "mcpServers": {
+        "deot-web": {
+            "command": "npx",
+            "args": [
+                "deot-web-mcp"
+            ]
+        },
+		"deot-uni": {
+            "command": "npx",
+            "args": [
+                "deot-uni-mcp"
+            ]
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "@deot/mcp",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@deot/mcp-web": "^1.0.0",
+    "@deot/mcp-uni": "^1.0.0"
+  }
+}
